@@ -1,4 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700)
+$arrow-size: .35rem
+$buffer: .35rem
+$default-color: rgba(20, 20, 20, 0.85)
 body
   font-family: Open Sans
 
@@ -10,8 +13,77 @@ body
       h1
         font-size: 2rem
 
+    main
+      ul#demo-links
+        list-style: none
+
+        li
+          margin: 2rem 0
+
+        a.demo-link
+          display: inline-block
+
 .cooltip
   position: absolute
-  background-color: rgba(20, 20, 20, 0.8)
+  background-color: $default-color
   color: #fff
-  padding: .5rem
+  padding: .5rem .7rem
+  display: none
+  font-size: .85rem
+
+  &.direction-top
+    margin-top: -1*($buffer + $arrow-size)
+    &:after
+      position: absolute
+      content: ''
+      width: 0
+      height: 0
+      border-top: $arrow-size solid $default-color
+      border-right: $arrow-size solid transparent
+      border-bottom: $arrow-size solid transparent
+      border-left: $arrow-size solid transparent
+      top: 100%
+      left: calc(50% - .35rem)
+
+  &.direction-right
+    margin-left: $buffer + $arrow-size
+    &:after
+      position: absolute
+      content: ''
+      width: 0
+      height: 0
+      border-top: $arrow-size solid transparent
+      border-right: $arrow-size solid $default-color
+      border-bottom: $arrow-size solid transparent
+      border-left: $arrow-size solid transparent
+      top: calc(50% - .35rem)
+      right: 100%
+
+  &.direction-bottom
+    margin-top: $buffer + $arrow-size
+    &:after
+      position: absolute
+      content: ''
+      width: 0
+      height: 0
+      border-top: $arrow-size solid transparent
+      border-right: $arrow-size solid transparent
+      border-bottom: $arrow-size solid $default-color
+      border-left: $arrow-size solid transparent
+      bottom: 100%
+      left: calc(50% - .35rem)
+
+  &.direction-left
+    margin-left: -1*($buffer + $arrow-size)
+    &:after
+      position: absolute
+      content: ''
+      width: 0
+      height: 0
+      border-top: $arrow-size solid transparent
+      border-right: $arrow-size solid transparent
+      border-bottom: $arrow-size solid transparent
+      border-left: $arrow-size solid $default-color
+      top: calc(50% - .35rem)
+      left: 100%
+

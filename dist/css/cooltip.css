@@ -6,11 +6,71 @@ body {
     max-width: 50rem; }
     body #container header h1 {
       font-size: 2rem; }
+    body #container main ul#demo-links {
+      list-style: none; }
+      body #container main ul#demo-links li {
+        margin: 2rem 0; }
+      body #container main ul#demo-links a.demo-link {
+        display: inline-block; }
 
 .cooltip {
   position: absolute;
-  background-color: rgba(20, 20, 20, 0.8);
+  background-color: rgba(20, 20, 20, 0.85);
   color: #fff;
-  padding: 0.5rem; }
+  padding: 0.5rem 0.7rem;
+  display: none;
+  font-size: 0.85rem; }
+  .cooltip.direction-top {
+    margin-top: -0.7rem; }
+    .cooltip.direction-top:after {
+      position: absolute;
+      content: "";
+      width: 0;
+      height: 0;
+      border-top: 0.35rem solid rgba(20, 20, 20, 0.85);
+      border-right: 0.35rem solid transparent;
+      border-bottom: 0.35rem solid transparent;
+      border-left: 0.35rem solid transparent;
+      top: 100%;
+      left: calc(50% - .35rem); }
+  .cooltip.direction-right {
+    margin-left: 0.7rem; }
+    .cooltip.direction-right:after {
+      position: absolute;
+      content: "";
+      width: 0;
+      height: 0;
+      border-top: 0.35rem solid transparent;
+      border-right: 0.35rem solid rgba(20, 20, 20, 0.85);
+      border-bottom: 0.35rem solid transparent;
+      border-left: 0.35rem solid transparent;
+      top: calc(50% - .35rem);
+      right: 100%; }
+  .cooltip.direction-bottom {
+    margin-top: 0.7rem; }
+    .cooltip.direction-bottom:after {
+      position: absolute;
+      content: "";
+      width: 0;
+      height: 0;
+      border-top: 0.35rem solid transparent;
+      border-right: 0.35rem solid transparent;
+      border-bottom: 0.35rem solid rgba(20, 20, 20, 0.85);
+      border-left: 0.35rem solid transparent;
+      bottom: 100%;
+      left: calc(50% - .35rem); }
+  .cooltip.direction-left {
+    margin-left: -0.7rem; }
+    .cooltip.direction-left:after {
+      position: absolute;
+      content: "";
+      width: 0;
+      height: 0;
+      border-top: 0.35rem solid transparent;
+      border-right: 0.35rem solid transparent;
+      border-bottom: 0.35rem solid transparent;
+      border-left: 0.35rem solid rgba(20, 20, 20, 0.85);
+      top: calc(50% - .35rem);
+      left: 100%; }
 
 /*# sourceMappingURL=cooltip.css.map */
