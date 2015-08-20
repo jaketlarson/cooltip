@@ -1,5 +1,5 @@
 # Cooltip
-In many web projects, I find myself wishing I had a tooltip plugin on hand. There are many out there, but I find that many are pretty heavy or outdated. So, I decided to make my own plugin.
+In many web projects, I find myself wishing I had a tooltip plugin on hand. There are many out there, but I often find they are pretty heavy, complex or outdated. So, I decided to make my own plugin.
 
 Cooltip is a jQuery tooltip plugin, intended to be lightweight and flexible.
 
@@ -13,6 +13,13 @@ Cooltip is a jQuery tooltip plugin, intended to be lightweight and flexible.
 3. Install <a href="https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md">gulp</a>
 
 4. Run <code>gulp</code>.
+
+5. Copy cooltip.js and cooltip.css to your project.
+
+6. Use <code>$('a').cooltip()</code> for default configuration, using the title attribute as the tooltip text. More options below.
+
+# Options
+Coming soon!
 
 # License
 MIT license. See LICENSE file for more information.
