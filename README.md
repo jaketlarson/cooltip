@@ -10,13 +10,11 @@ Cooltip is a jQuery tooltip plugin, intended to be lightweight and flexible.
 2. Install <a href="https://www.npmjs.com/">npm</a>. Then run
   <code>npm install</code>
 
-3. Install <a href="https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md">gulp</a>
+3. Run <code>gulp</code>.
 
-4. Run <code>gulp</code>.
+4. Copy cooltip.js and cooltip.css to your project.
 
-5. Copy cooltip.js and cooltip.css to your project.
-
-6. Use <code>$('a').cooltip()</code> for default configuration, using the title attribute as the tooltip text. More options below.
+5. Use <code>$('a').cooltip()</code> for default configuration, using the title attribute as the tooltip text. More options below.
 
 # Options
 Coming soon!
