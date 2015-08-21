@@ -1,9 +1,14 @@
 /**
- * Cooltip - Lightweight, jQuery tooltip plugin
- * @version v1.0.0
- * @link https://github.com/jaketlarson/cooltip
- * @license license...
- */
+ * Cooltip.js - Lightweight, jQuery tooltip plugin
+ * v0.1.5
+ * GitHub: https://github.com/jaketlarson/cooltip
+ *
+ * Copyright(c) 2015 Jake Larson <codereloadrepeat@gmail.com> <codereloadrepeat.com>
+ * MIT Licensed. http://www.opensource.org/licenses/mit-license.php
+ *
+ * jQuery plugin boilerplate used in this script can be found at
+ * https://github.com/jquery-boilerplate/jquery-boilerplate/tree/master/src
+*/
 (function($, window, document) {
   var Cooltip, defaults, pluginName;
   pluginName = 'cooltip';
@@ -19,29 +24,31 @@
     this.options = $.extend({}, defaults, options);
     this._defaults = defaults;
     this._name = pluginName;
-    this.init();
+    return this.init();
   };
   Cooltip.prototype = {
     init: function() {
       this.uniq_id = Math.random().toString(36).slice(2);
-      this.initTip();
-      return this.bindTrigger();
+      this._initTip();
+      return this._bindTrigger();
     },
-    initTip: function() {
-      this.$tip = $("<div class='cooltip'></div>");
-      this.$tip.attr('id', this.uniq_id);
-      $('body').append(this.$tip);
-      return this.$tip.html(this.$target.attr(this.options.attr));
+    _initTip: function() {
+      this.$tip = $("<div/>", {
+        id: this.uniq_id,
+        "class": 'cooltip'
+      });
+      this.$tip.html(this.$target.attr(this.options.attr));
+      return $('body').append(this.$tip);
     },
-    positionTip: function() {
+    _positionTip: function() {
       var position;
-      position = this.getPosition();
+      position = this._getPosition();
       return this.$tip.css({
         left: position.left,
         top: position.top
       });
     },
-    getPosition: function() {
+    _getPosition: function() {
       var position, positionBottom, positionLeft, positionRight, positionTop;
       position = {
         left: null,
@@ -93,14 +100,16 @@
       }
       return position;
     },
-    bindTrigger: function() {
+    _bindTrigger: function() {
       var bindAsHover;
       bindAsHover = (function(_this) {
         return function() {
           return _this.$target.hover(function(e) {
-            return _this.showTip();
+            _this.showTip();
+            return _this._maskTitle();
           }, function(e) {
-            return _this.hideTip();
+            _this.hideTip();
+            return _this._unmaskTitle();
           });
         };
       })(this);
@@ -113,16 +122,34 @@
     },
     showTip: function() {
       this.$tip.show();
-      return this.positionTip();
+      return this._positionTip();
     },
     hideTip: function() {
       return this.$tip.hide();
+    },
+    _maskTitle: function() {
+      var is_using_title_attr, title_exists;
+      is_using_title_attr = this.options.attr === 'title' ? true : false;
+      title_exists = typeof this.$target.attr('title') !== typeof void 0 && this.$target.attr('title') !== false && this.$target.attr('title').length > 0 ? true : false;
+      if (is_using_title_attr && title_exists) {
+        this.$target.data('title', this.$target.attr('title'));
+        return this.$target.attr('title', '');
+      }
+    },
+    _unmaskTitle: function() {
+      var data_title_exists, title_already_exists;
+      data_title_exists = typeof this.$target.attr('title') !== typeof void 0 && this.$target.attr('title') !== false ? true : false;
+      title_already_exists = typeof this.$target.attr('title') !== typeof void 0 && this.$target.attr('title') !== false && this.$target.attr('title').length > 0 ? true : false;
+      if (data_title_exists && !title_already_exists) {
+        this.$target.attr('title', this.$target.data('title'));
+        return this.$target.data('title', '');
+      }
     }
   };
-  $.fn[pluginName] = function(options) {
+  return $.fn[pluginName] = function(options) {
     return this.each(function() {
       if (!$.data(this, 'plugin_' + pluginName)) {
-        $.data(this, 'plugin_' + pluginName, new Cooltip(this, options));
+        return $.data(this, 'plugin_' + pluginName, new Cooltip(this, options));
       }
     });
   };

@@ -20,10 +20,11 @@ var config = {
 var pkg = require('./package.json');
 var banner = ['/**',
   ' * <%= pkg.name %> - <%= pkg.description %>',
-  ' * @version v<%= pkg.version %>',
-  ' * @link <%= pkg.homepage %>',
-  ' * @license <%= pkg.license %>',
-  ' */',
+  ' * v<%= pkg.version %>',
+  ' * GitHub: <%= pkg.homepage %>',
+  ' *',
+  '<%= pkg.license.join("\\n") %>',
+  '*/',
   ''].join('\n');
 
 
@@ -49,8 +50,8 @@ gulp.task('compile-coffee', function() {
     .pipe(notify({ message: 'compile-coffee task complete' }));
 });
 
-gulp.task('append-license', function () {
-  gulp.src(config.jsDir + '*.js')
+gulp.task('append-cooltip-license', function () {
+  gulp.src(config.jsDir + 'cooltip.js')
     .pipe(header(banner, { pkg : pkg }))
     .pipe(gulp.dest(config.jsDir));
 });
@@ -59,9 +60,9 @@ gulp.task('append-license', function () {
  gulp.task('watch', function() {
    gulp.watch(config.coffeeDir + '*.coffee', ['compile-coffee']); 
    gulp.watch(config.sassDir + '*.sass', ['compile-sass']);
-   gulp.watch(config.jsDir + '*.js', ['append-license']);
   livereload.listen();
   gulp.watch([config.srcDir + '/**']).on('change', livereload.changed);
+   gulp.watch(config.jsDir + '*.js', ['append-cooltip-license']);
 });
 
 

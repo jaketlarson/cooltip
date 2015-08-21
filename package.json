@@ -1,10 +1,14 @@
 {
-  "name": "Cooltip", 
+  "name": "Cooltip.js", 
   "description": "Lightweight, jQuery tooltip plugin",
-  "version": "1.0.0",
+  "version": "0.1.5",
   "homepage": "https://github.com/jaketlarson/cooltip",
-  "license": "license...",
-  
+  "license": [" * Copyright(c) 2015 Jake Larson <codereloadrepeat@gmail.com> <codereloadrepeat.com>",
+              " * MIT Licensed. http://www.opensource.org/licenses/mit-license.php",
+              " *",
+              " * jQuery plugin boilerplate used in this script can be found at",
+              " * https://github.com/jquery-boilerplate/jquery-boilerplate/tree/master/src"],
+
   "devDependencies": {
     "gulp": "^3.8.11",
     "gulp-bower": "0.0.10",
