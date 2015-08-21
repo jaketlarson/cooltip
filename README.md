@@ -1,5 +1,5 @@
 # Cooltip
-In many web projects, I find myself wishing I had a tooltip plugin on hand. There are many out there, but I often find they are pretty heavy, complex or outdated.
+In many web projects I find myself wishing I had a tooltip plugin on hand. There are many out there, but I often find they are pretty heavy, complex or outdated.
 
 I also needed the ability to control what side of the tooltip the arrow shows (separate from the typical "direction" option), which would help immensely with buttons in the corners of pages. So, I decided to write my own plugin.
 
