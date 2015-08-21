@@ -16,7 +16,7 @@ Cooltip is a jQuery tooltip plugin, intended to be lightweight and flexible.
 
 4. Copy cooltip.js and cooltip.css to your project.
 
-5. Use <code>$('a').cooltip()</code> for default configuration, using the title attribute as the tooltip text. More options below.
+5. Use <code><a title="This link goes nowhere!"></a></code> and <code>$('a').cooltip()</code> for default configuration, using the title attribute as the tooltip text. More options below.
 
 # Options
 Coming soon!
