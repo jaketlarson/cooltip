@@ -1,31 +1,72 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700)
-$arrow-size: .35rem
-$buffer: .35rem
-$default-color: rgba(20, 20, 20, 0.85)
+
+$arrow-size: .4rem
+$buffer: .3rem
+$cooltip-bg-color: rgba(20, 20, 20, 0.85)
+$primary-color: #16a085
+
 body
   font-family: Open Sans
+  background-color: $primary-color
 
   #container
-    margin: 0 auto
-    max-width: 50rem
+    margin: 3rem auto
+    max-width: 60rem
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
+    padding: 2rem
+    background-color: #fff
+
+    a
+      color: $primary-color
 
     header
       h1
         font-size: 2rem
+        margin-top: 0
+
+        .credits
+          float: right
+          margin-top: .6rem
+          font-size: .8rem
+
+          a
+            text-decoration: none
+
+            &:hover
+              text-decoration: underline
+
 
     main
-      ul#demo-links
+      h3
+        margin-bottom: 0
+
+        code
+          margin: 0 .45rem
+          display: inline-block
+
+      ul.demo-links
         list-style: none
+        margin-top: 0
 
         li
-          margin: 2rem 0
+          margin: .5rem 0 2rem -1rem
+          display: inline-block
+          width: 33%
+          vertical-align: top
+          padding: .25rem
+          font-size: 1.25rem
 
         a.demo-link
-          display: inline-block
+          display: inline
+          margin: 1px
+
+          &:hover
+            border: 1px solid $primary-color
+            margin: 0
 
 .cooltip
   position: absolute
-  background-color: $default-color
+  background-color: $cooltip-bg-color
   color: #fff
   padding: .5rem .7rem
   display: none
@@ -38,12 +79,12 @@ body
       content: ''
       width: 0
       height: 0
-      border-top: $arrow-size solid $default-color
+      border-top: $arrow-size solid $cooltip-bg-color
       border-right: $arrow-size solid transparent
       border-bottom: $arrow-size solid transparent
       border-left: $arrow-size solid transparent
       top: 100%
-      left: calc(50% - .35rem)
+      left: calc(50% - .4rem)
 
   &.direction-right
     margin-left: $buffer + $arrow-size
@@ -53,10 +94,10 @@ body
       width: 0
       height: 0
       border-top: $arrow-size solid transparent
-      border-right: $arrow-size solid $default-color
+      border-right: $arrow-size solid $cooltip-bg-color
       border-bottom: $arrow-size solid transparent
       border-left: $arrow-size solid transparent
-      top: calc(50% - .35rem)
+      top: calc(50% - .4rem)
       right: 100%
 
   &.direction-bottom
@@ -68,10 +109,10 @@ body
       height: 0
       border-top: $arrow-size solid transparent
       border-right: $arrow-size solid transparent
-      border-bottom: $arrow-size solid $default-color
+      border-bottom: $arrow-size solid $cooltip-bg-color
       border-left: $arrow-size solid transparent
       bottom: 100%
-      left: calc(50% - .35rem)
+      left: calc(50% - .4rem)
 
   &.direction-left
     margin-left: -1*($buffer + $arrow-size)
@@ -83,7 +124,32 @@ body
       border-top: $arrow-size solid transparent
       border-right: $arrow-size solid transparent
       border-bottom: $arrow-size solid transparent
-      border-left: $arrow-size solid $default-color
-      top: calc(50% - .35rem)
+      border-left: $arrow-size solid $cooltip-bg-color
+      top: calc(50% - .4rem)
       left: 100%
+
+  // Overrides for arrow position if align property set
+  // NOTE: If you change the position attributes, you must
+  // Update the JS file for the following: 
+  // @_aligning_arrow_buffer
+  // to mirror the position attribute.
+  &.direction-top, &.direction-bottom
+    &.align-right
+      &:after
+        left: $buffer
+
+    &.align-left
+      &:after
+        left: initial
+        right: $buffer
+
+  &.direction-right, &.direction-left
+    &.align-top
+      &:after
+        top: initial
+        bottom: $buffer
+
+    &.align-bottom
+      &:after
+        top: $buffer
 

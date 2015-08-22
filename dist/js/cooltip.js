@@ -1,6 +1,17 @@
 /**
  * Cooltip.js - Lightweight, jQuery tooltip plugin
- * v0.1.5
+ * v0.2.0
+ * GitHub: https://github.com/jaketlarson/cooltip
+ *
+ * Copyright(c) 2015 Jake Larson <codereloadrepeat@gmail.com> <codereloadrepeat.com>
+ * MIT Licensed. http://www.opensource.org/licenses/mit-license.php
+ *
+ * jQuery plugin boilerplate used in this script can be found at
+ * https://github.com/jquery-boilerplate/jquery-boilerplate/tree/master/src
+*/
+/**
+ * Cooltip.js - Lightweight, jQuery tooltip plugin
+ * v0.2.0
  * GitHub: https://github.com/jaketlarson/cooltip
  *
  * Copyright(c) 2015 Jake Larson <codereloadrepeat@gmail.com> <codereloadrepeat.com>
@@ -13,9 +24,9 @@
   var Cooltip, defaults, pluginName;
   pluginName = 'cooltip';
   defaults = {
-    direction: 'right',
+    direction: 'top',
     trigger: 'hover',
-    lean: 'middle',
+    align: 'middle',
     attr: 'title'
   };
   Cooltip = function(target, options) {
@@ -29,8 +40,10 @@
   Cooltip.prototype = {
     init: function() {
       this.uniq_id = Math.random().toString(36).slice(2);
+      this._aligning_arrow_buffer = .3 * 16;
+      this._aligning_arrow_width = .8 * 16;
       this._initTip();
-      return this._bindTrigger();
+      this._bindTrigger();
     },
     _initTip: function() {
       this.$tip = $("<div/>", {
@@ -38,73 +51,98 @@
         "class": 'cooltip'
       });
       this.$tip.html(this.$target.attr(this.options.attr));
-      return $('body').append(this.$tip);
+      $('body').append(this.$tip);
     },
     _positionTip: function() {
       var position;
       position = this._getPosition();
-      return this.$tip.css({
+      this._setClass();
+      this.$tip.css({
         left: position.left,
         top: position.top
       });
     },
+    _calcPositionLeft: function() {
+      var left;
+      left = null;
+      if (this.options.direction === 'top' || this.options.direction === 'bottom') {
+        if (this.options.align === 'right') {
+          left = this.$target.offset().left + this.$target.outerWidth(true) / 2 - this._aligning_arrow_width / 2 - this._aligning_arrow_buffer;
+        } else if (this.options.align === 'left') {
+          left = this.$target.offset().left - this.$tip.outerWidth(true) + this.$target.outerWidth(true) / 2 + this._aligning_arrow_width / 2 + this._aligning_arrow_buffer;
+        } else {
+          left = this.$target.offset().left + this.$target.outerWidth(true) / 2 - this.$tip.outerWidth(true) / 2;
+        }
+      } else if (this.options.direction === 'left') {
+        left = this.$target.offset().left - this.$tip.innerWidth();
+      } else if (this.options.direction === 'right') {
+        left = this.$target.offset().left + this.$target.outerWidth(true);
+      }
+      return left;
+    },
+    _calcPositionTop: function() {
+      var ptop, top;
+      top = null;
+      if (this.options.direction === 'top') {
+        return top = this.$target.offset().top - this.$tip.innerHeight();
+      } else if (this.options.direction === 'bottom') {
+        return top = this.$target.offset().top + this.$target.outerHeight(true);
+      } else if (this.options.direction === 'left' || this.options.direction === 'right') {
+        if (this.options.align === 'top') {
+          return top = this.$target.offset().top - this.$tip.outerHeight(true) + this.$target.outerHeight(true) / 2 + this._aligning_arrow_width / 2 + this._aligning_arrow_buffer;
+        } else if (this.options.align === 'bottom') {
+          return top = this.$target.offset().top + this.$target.outerHeight(true) / 2 - this._aligning_arrow_width / 2 - this._aligning_arrow_buffer;
+        } else {
+          return ptop = this.$target.offset().top + this.$target.outerHeight(true) / 2 - this.$tip.innerHeight() / 2;
+        }
+      }
+    },
     _getPosition: function() {
-      var position, positionBottom, positionLeft, positionRight, positionTop;
+      var position;
       position = {
-        left: null,
-        top: null
+        left: this._calcPositionLeft(),
+        top: this._calcPositionTop()
       };
-      positionTop = (function(_this) {
-        return function() {
-          position.left = _this.$target.offset().left + _this.$target.outerWidth(true) / 2 - _this.$tip.outerWidth(true) / 2;
-          position.top = _this.$target.offset().top - _this.$tip.innerHeight();
-          return _this.$tip.addClass('direction-top');
-        };
-      })(this);
-      positionRight = (function(_this) {
-        return function() {
-          position.left = _this.$target.offset().left + _this.$target.outerWidth(true);
-          position.top = _this.$target.offset().top + _this.$target.outerHeight(true) / 2 - _this.$tip.innerHeight() / 2;
-          return _this.$tip.addClass('direction-right');
-        };
-      })(this);
-      positionBottom = (function(_this) {
-        return function() {
-          position.left = _this.$target.offset().left + _this.$target.outerWidth(true) / 2 - _this.$tip.innerWidth() / 2;
-          position.top = _this.$target.offset().top + _this.$target.outerHeight(true);
-          return _this.$tip.addClass('direction-bottom');
-        };
-      })(this);
-      positionLeft = (function(_this) {
-        return function() {
-          position.left = _this.$target.offset().left - _this.$tip.innerWidth();
-          position.top = _this.$target.offset().top + _this.$target.outerHeight(true) / 2 - _this.$tip.innerHeight() / 2;
-          return _this.$tip.addClass('direction-left');
-        };
-      })(this);
+      return position;
+    },
+    _setClass: function() {
       switch (this.options.direction) {
         case 'top':
-          positionTop();
+          this.$tip.addClass('direction-top');
           break;
         case 'right':
-          positionRight();
+          this.$tip.addClass('direction-right');
           break;
         case 'bottom':
-          positionBottom();
+          this.$tip.addClass('direction-bottom');
           break;
         case 'left':
-          positionLeft();
-          break;
-        default:
-          positionTop();
+          this.$tip.addClass('direction-left');
       }
-      return position;
+      if (this.options.direction === 'top' || this.options.direction === 'bottom') {
+        switch (this.options.align) {
+          case 'left':
+            this.$tip.addClass('align-left');
+            break;
+          case 'right':
+            this.$tip.addClass('align-right');
+        }
+      }
+      if (this.options.direction === 'right' || this.options.direction === 'left') {
+        switch (this.options.align) {
+          case 'top':
+            this.$tip.addClass('align-top');
+            break;
+          case 'bottom':
+            this.$tip.addClass('align-bottom');
+        }
+      }
     },
     _bindTrigger: function() {
       var bindAsHover;
       bindAsHover = (function(_this) {
         return function() {
-          return _this.$target.hover(function(e) {
+          _this.$target.hover(function(e) {
             _this.showTip();
             return _this._maskTitle();
           }, function(e) {
@@ -115,17 +153,18 @@
       })(this);
       switch (this.options.trigger) {
         case 'hover':
-          return bindAsHover();
+          bindAsHover();
+          break;
         default:
-          return bindAsHover();
+          bindAsHover();
       }
     },
     showTip: function() {
       this.$tip.show();
-      return this._positionTip();
+      this._positionTip();
     },
     hideTip: function() {
-      return this.$tip.hide();
+      this.$tip.hide();
     },
     _maskTitle: function() {
       var is_using_title_attr, title_exists;
@@ -133,7 +172,7 @@
       title_exists = typeof this.$target.attr('title') !== typeof void 0 && this.$target.attr('title') !== false && this.$target.attr('title').length > 0 ? true : false;
       if (is_using_title_attr && title_exists) {
         this.$target.data('title', this.$target.attr('title'));
-        return this.$target.attr('title', '');
+        this.$target.attr('title', '');
       }
     },
     _unmaskTitle: function() {
@@ -142,7 +181,7 @@
       title_already_exists = typeof this.$target.attr('title') !== typeof void 0 && this.$target.attr('title') !== false && this.$target.attr('title').length > 0 ? true : false;
       if (data_title_exists && !title_already_exists) {
         this.$target.attr('title', this.$target.data('title'));
-        return this.$target.data('title', '');
+        this.$target.data('title', '');
       }
     }
   };
@@ -156,16 +195,48 @@
 })(jQuery, window, document);
 
 $(function() {
-  $("a#demo-direction-top").cooltip({
+  $("a#demo-direction-top-align-default").cooltip({
     direction: 'top'
   });
-  $("a#demo-direction-right").cooltip({
+  $("a#demo-direction-top-align-right").cooltip({
+    direction: 'top',
+    align: 'right'
+  });
+  $("a#demo-direction-top-align-left").cooltip({
+    direction: 'top',
+    align: 'left'
+  });
+  $("a#demo-direction-right-align-default").cooltip({
     direction: 'right'
   });
-  $("a#demo-direction-bottom").cooltip({
+  $("a#demo-direction-right-align-top").cooltip({
+    direction: 'right',
+    align: 'top'
+  });
+  $("a#demo-direction-right-align-bottom").cooltip({
+    direction: 'right',
+    align: 'bottom'
+  });
+  $("a#demo-direction-bottom-align-default").cooltip({
     direction: 'bottom'
   });
-  return $("a#demo-direction-left").cooltip({
+  $("a#demo-direction-bottom-align-right").cooltip({
+    direction: 'bottom',
+    align: 'right'
+  });
+  $("a#demo-direction-bottom-align-left").cooltip({
+    direction: 'bottom',
+    align: 'left'
+  });
+  $("a#demo-direction-left-align-default").cooltip({
     direction: 'left'
+  });
+  $("a#demo-direction-left-align-top").cooltip({
+    direction: 'left',
+    align: 'top'
+  });
+  return $("a#demo-direction-left-align-bottom").cooltip({
+    direction: 'left',
+    align: 'bottom'
   });
 });

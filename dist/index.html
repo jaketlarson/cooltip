@@ -13,21 +13,62 @@
   <body>
     <div id="container">
       <header>
-        <h1>CoolTip JS Example</h1>
+        <h1>
+          CoolTip JS Demonstration
+          <div class='credits'>&copy;2015 <a href="http://www.codereloadrepeat.com" target="_blank">Jake Larson</a></div
+        </h1>
       </header>
       <main>
-        <ul id='demo-links'>
+
+        <h3>Set <code>direction: top</code> (default)</h3>
+        <ul class='demo-links'>
           <li>
-            <a href="#" class='demo-link' id='demo-direction-top' title='Here is a tooltip!'>direction: top</a>
+            <a href="#" class='demo-link' id='demo-direction-top-align-default' title='Here is a tooltip!'><code>align: middle (default)</code></a>
           </li>
           <li>
-            <a href="#" class='demo-link' id='demo-direction-right' title='Here is a tooltip!'>direction: right</a>
+            <a href="#" class='demo-link' id='demo-direction-top-align-right' title='Here is a tooltip!'><code>align: right</code></a>
           </li>
           <li>
-            <a href="#" class='demo-link' id='demo-direction-bottom' title='Here is a tooltip!'>direction: bottom</a>
+            <a href="#" class='demo-link' id='demo-direction-top-align-left' title='Here is a tooltip!'><code>align: left</code></a>
+          </li>
+        </ul>
+
+        <h3>Set <code>direction: right</code></h3>
+        <ul class='demo-links'>
+          <li>
+            <a href="#" class='demo-link' id='demo-direction-right-align-default' title='Here is a tooltip!<br />Here is a tooltip!<br />Here is a tooltip!'><code>align: middle (default)</code></a>
           </li>
           <li>
-            <a href="#" class='demo-link' id='demo-direction-left' title='Here is a tooltip!'>direction: left</a>
+            <a href="#" class='demo-link' id='demo-direction-right-align-top' title='Here is a tooltip!<br />Here is a tooltip!<br />Here is a tooltip!'><code>align: top</code></a>
+          </li>
+          <li>
+            <a href="#" class='demo-link' id='demo-direction-right-align-bottom' title='Here is a tooltip!<br />Here is a tooltip!<br />Here is a tooltip!'><code>align: bottom</code></a>
+          </li>
+        </ul>
+
+        <h3>Set <code>direction: bottom</code></h3>
+        <ul class='demo-links'>
+          <li>
+            <a href="#" class='demo-link' id='demo-direction-bottom-align-default' title='Here is a tooltip!'><code>align: middle (default)</code></a>
+          </li>
+          <li>
+            <a href="#" class='demo-link' id='demo-direction-bottom-align-right' title='Here is a tooltip!'><code>align: right</code></a>
+          </li>
+          <li>
+            <a href="#" class='demo-link' id='demo-direction-bottom-align-left' title='Here is a tooltip!'><code>align: left</code></a>
+          </li>
+        </ul>
+
+        <h3>Set <code>direction: left</code></h3>
+        <ul class='demo-links'>
+          <li>
+            <a href="#" class='demo-link' id='demo-direction-left-align-default' title='Here is a tooltip!<br />Here is a tooltip!<br />Here is a tooltip!'><code>align: middle (default)</code></a>
+          </li>
+          <li>
+            <a href="#" class='demo-link' id='demo-direction-left-align-top' title='Here is a tooltip!<br />Here is a tooltip!<br />Here is a tooltip!'><code>align: top</code></a>
+          </li>
+          <li>
+            <a href="#" class='demo-link' id='demo-direction-left-align-bottom' title='Here is a tooltip!<br />Here is a tooltip!<br />Here is a tooltip!'><code>align: bottom</code></a>
           </li>
         </ul>
 
