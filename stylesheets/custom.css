@@ -2,14 +2,14 @@ h1.project-name {
   font-family: 'Ropa Sans';
 }
 
-table#options-table {
+table#options-table, table#api-table {
   font-size: .8rem;
 }
 
-table#options-table td {
+table#options-table td, table#api-table td {
   vertical-align: top;
 }
 
-table#options-table tr td:not(:first-child) code {
+table#options-table tr td:not(:first-child) code, table#api-table tr td:not(:first-child) code {
   font-size: .8rem;
 }
