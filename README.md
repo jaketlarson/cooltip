@@ -5,6 +5,9 @@ I also needed the ability to control what side of the tooltip the arrow shows (s
 
 Cooltip is a jQuery tooltip plugin, intended to be lightweight and flexible.
 
+# Demos, Options, and API
+See the Cooltip homepage http://jaketlarson.github.io to see the tooltip script in action with available options.
+
 # Installation
 1. To get started, clone the repository:
   <code>git clone https://github.com/jaketlarson/cooltip.git</code>
@@ -17,9 +20,6 @@ Cooltip is a jQuery tooltip plugin, intended to be lightweight and flexible.
 4. Copy cooltip.js and cooltip.css to your project.
 
 5. Use <code>&lt;a title="This link goes nowhere!"&gt;&lt;/a&gt;</code> and <code>$('a').cooltip()</code> for default configuration, using the title attribute as the tooltip text. More options below.
-
-# Options
-Coming soon!
 
 # License
 MIT license. See LICENSE file for more information.
