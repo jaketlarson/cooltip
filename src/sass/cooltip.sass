@@ -1,12 +1,17 @@
+// Common style variables for easy customization
 $bg-color: rgba(20, 20, 20, 0.85)
 $font-color: #fff
 $max-width: 15rem
 $font-size: .85rem
+$padding: .5rem .7rem
 
 // Careful when you edit these! They mirror variables set in JS:
 // "aligning_arrow_buffer" and "aligning_arrow_width".
 // If you change $arrow-size or $buffer (below), be sure to 
-// update the JS file, as well.
+// update the JS file, as well. Also, you'll have to change
+// lines like "left: calc(50% - .4rem)", because you can't
+// drop a variable in like that.
+// $arrow-size is not the width.. it's the border-width.
 $arrow-size: .4rem
 $buffer: .3rem
 
@@ -16,7 +21,7 @@ $buffer: .3rem
   left: 0
   background-color: $bg-color
   color: $font-color
-  padding: .5rem .7rem
+  padding: $padding
   font-size: $font-size
   max-width: $max-width
 
