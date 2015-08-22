@@ -244,6 +244,6 @@ a {
   .site-footer {
     font-size: 0.9rem; } }
     
-h1 {
+h1.project-name {
   font-family: Monda;
 }
