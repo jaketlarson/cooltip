@@ -19,7 +19,7 @@ See the Cooltip homepage @ http://jaketlarson.github.io/cooltip to see the toolt
 
 4. Copy cooltip.js and cooltip.css to your project.
 
-5. Use <code>&lt;a title="This link goes nowhere!"&gt;&lt;/a&gt;</code> and <code>$('a').cooltip()</code> for default configuration, using the title attribute as the tooltip text. More options below.
+5. Use <code>&lt;a title="This link goes nowhere!"&gt;&lt;/a&gt;</code> and <code>$('a').cooltip()</code> for default configuration, using the title attribute as the tooltip text. More options <a href="http://jaketlarson.github.io/cooltip">here</a>.
 
 # License
 MIT license. See LICENSE file for more information.
