@@ -1,3 +1,11 @@
 h1.project-name {
   font-family: 'Ropa Sans';
 }
+
+table#options-table {
+  font-size: .9rem;
+}
+
+table#options-table td {
+  vertical-align: top;
+}
