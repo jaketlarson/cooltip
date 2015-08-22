@@ -2,6 +2,11 @@ h1.project-name {
   font-family: 'Ropa Sans';
 }
 
+h2.project-tagline a {
+  color: #fff;
+  font-weight: bold;
+}
+
 table#options-table, table#api-table {
   font-size: .8rem;
 }
