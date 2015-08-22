@@ -1,0 +1,72 @@
+.cooltip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(20, 20, 20, 0.85);
+  color: #fff;
+  padding: 0.5rem 0.7rem;
+  font-size: 0.85rem;
+  max-width: 15rem; }
+  .cooltip.direction-top {
+    margin-bottom: 0.7rem; }
+    .cooltip.direction-top:after {
+      position: absolute;
+      content: "";
+      width: 0;
+      height: 0;
+      border-top: 0.4rem solid rgba(20, 20, 20, 0.85);
+      border-right: 0.4rem solid transparent;
+      border-bottom: 0.4rem solid transparent;
+      border-left: 0.4rem solid transparent;
+      top: 100%;
+      left: calc(50% - .4rem); }
+  .cooltip.direction-right {
+    margin-left: 0.7rem; }
+    .cooltip.direction-right:after {
+      position: absolute;
+      content: "";
+      width: 0;
+      height: 0;
+      border-top: 0.4rem solid transparent;
+      border-right: 0.4rem solid rgba(20, 20, 20, 0.85);
+      border-bottom: 0.4rem solid transparent;
+      border-left: 0.4rem solid transparent;
+      top: calc(50% - .4rem);
+      right: 100%; }
+  .cooltip.direction-bottom {
+    margin-top: 0.7rem; }
+    .cooltip.direction-bottom:after {
+      position: absolute;
+      content: "";
+      width: 0;
+      height: 0;
+      border-top: 0.4rem solid transparent;
+      border-right: 0.4rem solid transparent;
+      border-bottom: 0.4rem solid rgba(20, 20, 20, 0.85);
+      border-left: 0.4rem solid transparent;
+      bottom: 100%;
+      left: calc(50% - .4rem); }
+  .cooltip.direction-left {
+    margin-right: 0.7rem; }
+    .cooltip.direction-left:after {
+      position: absolute;
+      content: "";
+      width: 0;
+      height: 0;
+      border-top: 0.4rem solid transparent;
+      border-right: 0.4rem solid transparent;
+      border-bottom: 0.4rem solid transparent;
+      border-left: 0.4rem solid rgba(20, 20, 20, 0.85);
+      top: calc(50% - .4rem);
+      left: 100%; }
+  .cooltip.direction-top.align-right:after, .cooltip.direction-bottom.align-right:after {
+    left: 0.3rem; }
+  .cooltip.direction-top.align-left:after, .cooltip.direction-bottom.align-left:after {
+    left: initial;
+    right: 0.3rem; }
+  .cooltip.direction-right.align-top:after, .cooltip.direction-left.align-top:after {
+    top: initial;
+    bottom: 0.3rem; }
+  .cooltip.direction-right.align-bottom:after, .cooltip.direction-left.align-bottom:after {
+    top: 0.3rem; }
+
