@@ -44,10 +44,10 @@
     <thead>
       <tr>
         <th>
-          Option
+          Name
         </th>
         <th>
-          Description
+          Values / Description
         </th>
         <th>
           Default
@@ -56,8 +56,67 @@
           Example
         </th>
       </tr>
-      
     </thead>
+    <tbody>
+      <tr>
+        <td>
+          <code>align</code>
+        </td>
+        <td>
+          Direction of which the tooltip leans. This option depends on set direction (see option below) of the tooltip.
+          <br />
+          If direction:'top' (default) or direction:'bottom', options are: <code>right</code>, <code>left</code>
+          <br />
+          If direction:'right' (default) or direction:'left', options are: <code>top</code>, <code>bottom</code>
+          <br />
+        </td>
+        <td>middle</td>
+        <td>$(".has-tip").cooltip({direciton: 'top', align: 'right'});</td>
+      </tr>
+      
+      <tr>
+        <td>
+          <code>attr</code>
+        </td>
+        <td>
+          Attribute of element to pull tooltip text from.
+        </td>
+        <td>title</td>
+        <td>
+          <code>&lt;a href='#' class='has-tip' data-custom-attr='Here is a tooltip!'&gt;example link&lt;/a&gt;</code>
+          <br />
+          <code>$(".has-tip").cooltip({attr: 'data-custom-attr'})</code>;
+          </td>
+      </tr>
+      
+      <tr>
+        <td>
+          <code>class</code>
+        </td>
+        <td>Class(es) to be added to the tooltip. Separate multiple classes by spaces.</td>
+        <td>blank</td>
+        <td>$(".has-tip").cooltip({class: 'error large'});</td>
+      </tr>
+      
+      <tr>
+        <td>
+          <code>direction</code>
+        </td>
+        <td>Which direction from the element the tooltip should display</td>
+        <td>top</td>
+        <td>$(".has-tip").cooltip({direction: 'right'});</td>
+      </tr>
+      
+      <tr>
+        <td>
+          <code>enabled</code>
+        </td>
+        <td>Whether or not to enable tooltip on instantiation. Can be <code>true</code> or <code>false</code>.</td>
+        <td>true</td>
+        <td>$(".has-tip").cooltip({enabled: false});</td>
+      </tr>
+      
+    </tbody>
     
     
   </table>
