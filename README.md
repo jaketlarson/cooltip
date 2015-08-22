@@ -6,7 +6,7 @@ I also needed the ability to control what side of the tooltip the arrow shows (s
 Cooltip is a jQuery tooltip plugin, intended to be lightweight and flexible.
 
 # Demos, Options, and API
-See the Cooltip homepage http://jaketlarson.github.io to see the tooltip script in action with available options.
+See the Cooltip homepage @ http://jaketlarson.github.io/cooltip to see the tooltip script in action with available options.
 
 # Installation
 1. To get started, clone the repository:
