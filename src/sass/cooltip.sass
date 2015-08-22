@@ -49,7 +49,7 @@ body
         margin-top: 0
 
         li
-          margin: .5rem 0 2rem -1rem
+          margin: .5rem -1rem 2rem 0rem
           display: inline-block
           width: 33%
           vertical-align: top
@@ -58,22 +58,23 @@ body
 
         a.demo-link
           display: inline
-          margin: 1px
+          padding: 1px
 
           &:hover
             border: 1px solid $primary-color
-            margin: 0
+            padding: 0
 
 .cooltip
   position: absolute
+  top: 0
+  left: 0
   background-color: $cooltip-bg-color
   color: #fff
   padding: .5rem .7rem
-  display: none
   font-size: .85rem
 
   &.direction-top
-    margin-top: -1*($buffer + $arrow-size)
+    margin-bottom: $buffer + $arrow-size
     &:after
       position: absolute
       content: ''
@@ -115,7 +116,7 @@ body
       left: calc(50% - .4rem)
 
   &.direction-left
-    margin-left: -1*($buffer + $arrow-size)
+    margin-right: $buffer + $arrow-size
     &:after
       position: absolute
       content: ''

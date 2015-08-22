@@ -60,12 +60,11 @@
     _initTip: ->
       @$tip = $("<div/>", {id: @uniq_id, class: 'cooltip'})
       @$tip.html @$target.attr @options.attr
-      $('body').append @$tip
       return
 
     _positionTip: ->
-      position = @_getPosition()
       @_setClass()
+      position = @_getPosition()
       @$tip.css(
         left: position.left
         top: position.top
@@ -83,7 +82,7 @@
           left = @$target.offset().left + @$target.outerWidth(true)/2 - @$tip.outerWidth(true)/2
 
       else if @options.direction == 'left'
-        left = @$target.offset().left - @$tip.innerWidth()
+        left = @$target.offset().left - @$tip.outerWidth((true))
 
       else if @options.direction == 'right'
         left = @$target.offset().left + @$target.outerWidth(true)
@@ -93,7 +92,7 @@
     _calcPositionTop: ->
       top = null
       if @options.direction == 'top'
-        top = @$target.offset().top - @$tip.innerHeight()
+        top = @$target.offset().top - @$tip.outerHeight(true)
 
       else if @options.direction == 'bottom'
         top = @$target.offset().top + @$target.outerHeight(true)
@@ -105,7 +104,7 @@
           top = @$target.offset().top + @$target.outerHeight(true)/2 - @_aligning_arrow_width/2 - @_aligning_arrow_buffer
 
         else # default, align in middle
-          ptop = @$target.offset().top + @$target.outerHeight(true)/2  - @$tip.innerHeight()/2
+          top = @$target.offset().top + @$target.outerHeight(true)/2  - @$tip.outerHeight(true)/2
 
     _getPosition: ->
       position =
@@ -165,13 +164,16 @@
           bindAsHover()
       return
 
+    _appendTip: ->
+      @$tip.appendTo $('body')
+
     showTip: ->
-      @$tip.show()
+      @_appendTip()
       @_positionTip()
       return
 
     hideTip: ->
-      @$tip.hide()
+      @$tip.remove()
       return
 
     # If the attribute being copied into the tooltip is the title attribute,

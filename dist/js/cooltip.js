@@ -9,17 +9,6 @@
  * jQuery plugin boilerplate used in this script can be found at
  * https://github.com/jquery-boilerplate/jquery-boilerplate/tree/master/src
 */
-/**
- * Cooltip.js - Lightweight, jQuery tooltip plugin
- * v0.2.0
- * GitHub: https://github.com/jaketlarson/cooltip
- *
- * Copyright(c) 2015 Jake Larson <codereloadrepeat@gmail.com> <codereloadrepeat.com>
- * MIT Licensed. http://www.opensource.org/licenses/mit-license.php
- *
- * jQuery plugin boilerplate used in this script can be found at
- * https://github.com/jquery-boilerplate/jquery-boilerplate/tree/master/src
-*/
 (function($, window, document) {
   var Cooltip, defaults, pluginName;
   pluginName = 'cooltip';
@@ -51,12 +40,11 @@
         "class": 'cooltip'
       });
       this.$tip.html(this.$target.attr(this.options.attr));
-      $('body').append(this.$tip);
     },
     _positionTip: function() {
       var position;
-      position = this._getPosition();
       this._setClass();
+      position = this._getPosition();
       this.$tip.css({
         left: position.left,
         top: position.top
@@ -74,17 +62,17 @@
           left = this.$target.offset().left + this.$target.outerWidth(true) / 2 - this.$tip.outerWidth(true) / 2;
         }
       } else if (this.options.direction === 'left') {
-        left = this.$target.offset().left - this.$tip.innerWidth();
+        left = this.$target.offset().left - this.$tip.outerWidth(true);
       } else if (this.options.direction === 'right') {
         left = this.$target.offset().left + this.$target.outerWidth(true);
       }
       return left;
     },
     _calcPositionTop: function() {
-      var ptop, top;
+      var top;
       top = null;
       if (this.options.direction === 'top') {
-        return top = this.$target.offset().top - this.$tip.innerHeight();
+        return top = this.$target.offset().top - this.$tip.outerHeight(true);
       } else if (this.options.direction === 'bottom') {
         return top = this.$target.offset().top + this.$target.outerHeight(true);
       } else if (this.options.direction === 'left' || this.options.direction === 'right') {
@@ -93,7 +81,7 @@
         } else if (this.options.align === 'bottom') {
           return top = this.$target.offset().top + this.$target.outerHeight(true) / 2 - this._aligning_arrow_width / 2 - this._aligning_arrow_buffer;
         } else {
-          return ptop = this.$target.offset().top + this.$target.outerHeight(true) / 2 - this.$tip.innerHeight() / 2;
+          return top = this.$target.offset().top + this.$target.outerHeight(true) / 2 - this.$tip.outerHeight(true) / 2;
         }
       }
     },
@@ -159,12 +147,15 @@
           bindAsHover();
       }
     },
+    _appendTip: function() {
+      return this.$tip.appendTo($('body'));
+    },
     showTip: function() {
-      this.$tip.show();
+      this._appendTip();
       this._positionTip();
     },
     hideTip: function() {
-      this.$tip.hide();
+      this.$tip.remove();
     },
     _maskTitle: function() {
       var is_using_title_attr, title_exists;

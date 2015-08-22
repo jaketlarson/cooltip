@@ -30,7 +30,7 @@ body {
       list-style: none;
       margin-top: 0; }
       body #container main ul.demo-links li {
-        margin: 0.5rem 0 2rem -1rem;
+        margin: 0.5rem -1rem 2rem 0rem;
         display: inline-block;
         width: 33%;
         vertical-align: top;
@@ -38,20 +38,21 @@ body {
         font-size: 1.25rem; }
       body #container main ul.demo-links a.demo-link {
         display: inline;
-        margin: 1px; }
+        padding: 1px; }
         body #container main ul.demo-links a.demo-link:hover {
           border: 1px solid #16a085;
-          margin: 0; }
+          padding: 0; }
 
 .cooltip {
   position: absolute;
+  top: 0;
+  left: 0;
   background-color: rgba(20, 20, 20, 0.85);
   color: #fff;
   padding: 0.5rem 0.7rem;
-  display: none;
   font-size: 0.85rem; }
   .cooltip.direction-top {
-    margin-top: -0.7rem; }
+    margin-bottom: 0.7rem; }
     .cooltip.direction-top:after {
       position: absolute;
       content: "";
@@ -90,7 +91,7 @@ body {
       bottom: 100%;
       left: calc(50% - .4rem); }
   .cooltip.direction-left {
-    margin-left: -0.7rem; }
+    margin-right: 0.7rem; }
     .cooltip.direction-left:after {
       position: absolute;
       content: "";
