@@ -1,7 +1,29 @@
 /**
  * Cooltip.js - Lightweight, jQuery tooltip plugin
  * v0.2.0
- * GitHub: https://github.com/jaketlarson/cooltip
+ * Docs: http://jaketlarson.github.io/cooltip/
+ *
+ * Copyright(c) 2015 Jake Larson <codereloadrepeat@gmail.com> <codereloadrepeat.com>
+ * MIT Licensed. http://www.opensource.org/licenses/mit-license.php
+ *
+ * jQuery plugin boilerplate used in this script can be found at
+ * https://github.com/jquery-boilerplate/jquery-boilerplate/tree/master/src
+*/
+/**
+ * Cooltip.js - Lightweight, jQuery tooltip plugin
+ * v0.3.5
+ * Docs: http://jaketlarson.github.io/cooltip/
+ *
+ * Copyright(c) 2015 Jake Larson <codereloadrepeat@gmail.com> <codereloadrepeat.com>
+ * MIT Licensed. http://www.opensource.org/licenses/mit-license.php
+ *
+ * jQuery plugin boilerplate used in this script can be found at
+ * https://github.com/jquery-boilerplate/jquery-boilerplate/tree/master/src
+*/
+/**
+ * Cooltip.js - Lightweight, jQuery tooltip plugin
+ * v0.2.0
+ * Docs: http://jaketlarson.github.io/cooltip/
  *
  * Copyright(c) 2015 Jake Larson <codereloadrepeat@gmail.com> <codereloadrepeat.com>
  * MIT Licensed. http://www.opensource.org/licenses/mit-license.php
@@ -16,7 +38,9 @@
     direction: 'top',
     trigger: 'hover',
     align: 'middle',
-    attr: 'title'
+    attr: 'title',
+    "class": '',
+    enabled: true
   };
   Cooltip = function(target, options) {
     this.target = target;
@@ -40,6 +64,10 @@
         "class": 'cooltip'
       });
       this.$tip.html(this.$target.attr(this.options.attr));
+      if (this.options["class"].length > 0) {
+        this.$tip.addClass(this.options["class"]);
+      }
+      this._enabled = !!this.options.enabled;
     },
     _positionTip: function() {
       var position;
@@ -151,11 +179,16 @@
       return this.$tip.appendTo($('body'));
     },
     showTip: function() {
-      this._appendTip();
-      this._positionTip();
+      console.log(this._enabled);
+      if (this._enabled) {
+        this._appendTip();
+        this._positionTip();
+      }
     },
     hideTip: function() {
-      this.$tip.remove();
+      if (this._enabled) {
+        this.$tip.remove();
+      }
     },
     _maskTitle: function() {
       var is_using_title_attr, title_exists;
@@ -174,12 +207,43 @@
         this.$target.attr('title', this.$target.data('title'));
         this.$target.data('title', '');
       }
+    },
+    addClass: function(class_name) {
+      if (!this.$tip.hasClass(class_name)) {
+        return this.$tip.addClass(class_name);
+      }
+    },
+    removeClass: function(class_name) {
+      if (this.$tip.hasClass(class_name)) {
+        return this.$tip.removeClass(class_name);
+      }
+    },
+    disable: function() {
+      return this._enabled = false;
+    },
+    enable: function() {
+      return this._enabled = true;
     }
   };
-  return $.fn[pluginName] = function(options) {
+  return $.fn[pluginName] = function(options, arg) {
     return this.each(function() {
+      var instance;
       if (!$.data(this, 'plugin_' + pluginName)) {
         return $.data(this, 'plugin_' + pluginName, new Cooltip(this, options));
+      } else {
+        if (typeof options === 'string') {
+          instance = $.data(this, 'plugin_' + pluginName);
+          switch (options) {
+            case 'addClass':
+              return instance.addClass(arg);
+            case 'removeClass':
+              return instance.removeClass(arg);
+            case 'disable':
+              return instance.disable();
+            case 'enable':
+              return instance.enable();
+          }
+        }
       }
     });
   };

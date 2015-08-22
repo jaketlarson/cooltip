@@ -21,7 +21,7 @@ var pkg = require('./package.json');
 var banner = ['/**',
   ' * <%= pkg.name %> - <%= pkg.description %>',
   ' * v<%= pkg.version %>',
-  ' * GitHub: <%= pkg.homepage %>',
+  ' * Docs: <%= pkg.homepage %>',
   ' *',
   '<%= pkg.license.join("\\n") %>',
   '*/',

@@ -1,5 +1,5 @@
 $ ->
-  $("a#demo-direction-top-align-default").cooltip {direction: 'top'}
+  $("a#demo-direction-top-align-default").cooltip({direction: 'top', enabled: false, class: 'chicken wing'}).cooltip('enable').cooltip('removeClass', 'wing')
   $("a#demo-direction-top-align-right").cooltip {direction: 'top', align: 'right'}
   $("a#demo-direction-top-align-left").cooltip {direction: 'top', align: 'left'}
 

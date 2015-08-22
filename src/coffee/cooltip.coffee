@@ -15,9 +15,11 @@
     trigger: 'hover'
     align: 'middle'
     attr: 'title'
+    class: ''
+    enabled: true
   }
 
-  ## Defaults:
+  ## Options:
   # direction: which side of the element the tooltip appears
   # options: 'top', 'right', 'bottom', 'right'
   #
@@ -25,10 +27,13 @@
   # options: 'hover' (for now)
   #
   # align: direction the tooltip aligns from in respect of the arrow
-  # options:
   #   if any direction: 'middle'
   #   if direction is 'top' or 'bottom': 'left', 'right'
   #   [coming soon] if direction is 'left' or 'right': 'up', 'down'
+  #
+  # enabled: whether or not to show tooltip on trigger event
+  # options: true, false
+
 
 
   Cooltip = (target, options) ->
@@ -60,6 +65,12 @@
     _initTip: ->
       @$tip = $("<div/>", {id: @uniq_id, class: 'cooltip'})
       @$tip.html @$target.attr @options.attr
+
+      # Add classes if they were passed as an option
+      if @options.class.length > 0
+        @$tip.addClass @options.class
+
+      @_enabled = !!@options.enabled
       return
 
     _positionTip: ->
@@ -168,12 +179,15 @@
       @$tip.appendTo $('body')
 
     showTip: ->
-      @_appendTip()
-      @_positionTip()
+      console.log @_enabled
+      if @_enabled
+        @_appendTip()
+        @_positionTip()
       return
 
     hideTip: ->
-      @$tip.remove()
+      if @_enabled
+        @$tip.remove()
       return
 
     # If the attribute being copied into the tooltip is the title attribute,
@@ -197,10 +211,44 @@
         @$target.data 'title', ''
       return
 
+    addClass: (class_name) ->
+      if !@$tip.hasClass class_name
+        @$tip.addClass class_name
 
-  $.fn[pluginName] = (options) ->
+    removeClass: (class_name) ->
+      if @$tip.hasClass class_name
+        @$tip.removeClass class_name
+
+    disable: ->
+      @_enabled = false
+
+    enable: ->
+      @_enabled = true
+
+
+  $.fn[pluginName] = (options, arg) ->
     @each ->
+      # Check if we are instantiating the plugin
       unless $.data this, 'plugin_' + pluginName
         $.data this, 'plugin_' + pluginName, new Cooltip(this, options)
+
+      else
+        # Not instantiating? Check if it's an API call.
+        if typeof options == 'string'
+          instance = $.data this, 'plugin_' + pluginName
+
+          switch options
+            when 'addClass'
+              instance.addClass(arg)
+
+            when 'removeClass'
+              instance.removeClass(arg)
+
+            when 'disable'
+              instance.disable()
+
+            when 'enable'
+              instance.enable()
+
 
 ) jQuery, window, document

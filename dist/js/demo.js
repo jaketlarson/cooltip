@@ -1,7 +1,9 @@
 $(function() {
   $("a#demo-direction-top-align-default").cooltip({
-    direction: 'top'
-  });
+    direction: 'top',
+    enabled: false,
+    "class": 'chicken wing'
+  }).cooltip('enable').cooltip('removeClass', 'wing');
   $("a#demo-direction-top-align-right").cooltip({
     direction: 'top',
     align: 'right'
