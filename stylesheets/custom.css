@@ -9,3 +9,7 @@ table#options-table {
 table#options-table td {
   vertical-align: top;
 }
+
+table#options-table tr td:not(:first-child) code {
+  font-size: .8rem;
+}
