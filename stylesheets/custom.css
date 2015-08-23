@@ -36,3 +36,7 @@ ul.demo-links li {
 .cooltip.error {
   background-color: #c0392b;
   color: #fff; }
+  
+ul.demo-links input {
+  margin-right: 1rem;
+}
