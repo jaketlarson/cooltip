@@ -17,3 +17,4 @@ $ ->
 
   $('input#input-focus-demo').cooltip {trigger: 'focus', direction: 'right'}
   $('a#custom-class-demo').cooltip {class: 'light', direction: 'bottom'}
+  $('a#error-class-demo').cooltip {class: 'error', direction: 'bottom'}

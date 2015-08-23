@@ -47,8 +47,12 @@ $(function() {
     trigger: 'focus',
     direction: 'right'
   });
-  return $('a#custom-class-demo').cooltip({
+  $('a#custom-class-demo').cooltip({
     "class": 'light',
+    direction: 'bottom'
+  });
+  return $('a#error-class-demo').cooltip({
+    "class": 'error',
     direction: 'bottom'
   });
 });
