@@ -30,6 +30,8 @@ ul.demo-links li {
 
 .cooltip.light {
   background-color: #ecf0f1;
-  color: #333;
-  border: 1px solid #3498db;
-}
+  color: #333; }
+
+.cooltip.error {
+  background-color: #c0392b;
+  color: #fff; }
