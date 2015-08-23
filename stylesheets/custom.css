@@ -27,3 +27,9 @@ ul.demo-links li {
   width: 30%;
   display: inline-block;
 }
+
+.cooltip.light {
+  background-color: #ecf0f1;
+  color: #333;
+  border: 1px solid #3498db;
+}
