@@ -39,8 +39,16 @@ $(function() {
     direction: 'left',
     align: 'top'
   });
-  return $("a#demo-direction-left-align-bottom").cooltip({
+  $("a#demo-direction-left-align-bottom").cooltip({
     direction: 'left',
     align: 'bottom'
+  });
+  $('input#input-focus-demo').cooltip({
+    trigger: 'focus',
+    direction: 'right'
+  });
+  return $('a#custom-class-demo').cooltip({
+    "class": 'light',
+    direction: 'bottom'
   });
 });
