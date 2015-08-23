@@ -6,7 +6,8 @@
   color: #fff;
   padding: 0.5rem 0.7rem;
   font-size: 0.85rem;
-  max-width: 15rem; }
+  max-width: 15rem;
+  border-color: auto; }
   .cooltip.direction-top {
     margin-bottom: 0.7rem; }
     .cooltip.direction-top:after {
@@ -18,6 +19,7 @@
       border-right: 0.4rem solid transparent;
       border-bottom: 0.4rem solid transparent;
       border-left: 0.4rem solid transparent;
+      border-top-color: inherit;
       top: 100%;
       left: calc(50% - .4rem); }
   .cooltip.direction-right {
@@ -31,6 +33,7 @@
       border-right: 0.4rem solid rgba(20, 20, 20, 0.85);
       border-bottom: 0.4rem solid transparent;
       border-left: 0.4rem solid transparent;
+      border-right-color: inherit;
       top: calc(50% - .4rem);
       right: 100%; }
   .cooltip.direction-bottom {
@@ -44,6 +47,7 @@
       border-right: 0.4rem solid transparent;
       border-bottom: 0.4rem solid rgba(20, 20, 20, 0.85);
       border-left: 0.4rem solid transparent;
+      border-bottom-color: inherit;
       bottom: 100%;
       left: calc(50% - .4rem); }
   .cooltip.direction-left {
@@ -57,6 +61,7 @@
       border-right: 0.4rem solid transparent;
       border-bottom: 0.4rem solid transparent;
       border-left: 0.4rem solid rgba(20, 20, 20, 0.85);
+      border-left-color: inherit;
       top: calc(50% - .4rem);
       left: 100%; }
   .cooltip.direction-top.align-right:after, .cooltip.direction-bottom.align-right:after {
@@ -70,3 +75,4 @@
   .cooltip.direction-right.align-bottom:after, .cooltip.direction-left.align-bottom:after {
     top: 0.3rem; }
 
+/*# sourceMappingURL=cooltip.css.map */
