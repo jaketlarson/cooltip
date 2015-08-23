@@ -18,3 +18,12 @@ table#options-table td, table#api-table td {
 table#options-table tr td:not(:first-child) code, table#api-table tr td:not(:first-child) code {
   font-size: .8rem;
 }
+
+ul.demo-links {
+  list-style: none;
+}
+
+ul.demo-links li {
+  width: 30%;
+  display: inline-block;
+}
