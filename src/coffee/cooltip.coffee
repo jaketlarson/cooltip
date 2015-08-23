@@ -71,6 +71,10 @@
         @$tip.addClass @options.class
 
       @_enabled = !!@options.enabled
+
+      # Ensure arrow color is correct
+      @_matchArrowColor()
+
       return
 
     _positionTip: ->
@@ -167,9 +171,20 @@
           @_unmaskTitle()
         return
 
+      bindAsFocus = =>
+        @$target.focus (e) =>
+          @showTip()
+
+        @$target.blur (e) =>
+          @hideTip()
+        return
+
       switch @options.trigger
         when 'hover'
           bindAsHover()
+
+        when 'focus'
+          bindAsFocus()
 
         else
           bindAsHover()
@@ -179,7 +194,6 @@
       @$tip.appendTo $('body')
 
     showTip: ->
-      console.log @_enabled
       if @_enabled
         @_appendTip()
         @_positionTip()
@@ -210,6 +224,23 @@
         @$target.attr 'title', @$target.data('title')
         @$target.data 'title', ''
       return
+
+    # matchArrowColor will indrectly update the arrow color via border-color.
+    # Since it's a pseudo-element, it cannot be set directly.
+    # This will make customizing easier, by simply setting the background-color
+    # of the custom class.
+    _matchArrowColor: ->
+      $('body').append(@$tip)
+      
+      if parseInt(@$tip.css('border-width')) > 0
+        tip_bg = @$tip.css('border-color')
+      else
+        tip_bg = @$tip.css('background-color')
+
+      @$tip.remove()
+
+      if tip_bg.length > 0
+        @$tip.css('border-color', tip_bg)
 
     addClass: (class_name) ->
       if !@$tip.hasClass class_name

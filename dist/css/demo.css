@@ -36,11 +36,18 @@ body {
         vertical-align: top;
         padding: 0.25rem;
         font-size: 1.25rem; }
-      body #container main ul.demo-links a.demo-link {
-        display: inline;
-        padding: 1px; }
-        body #container main ul.demo-links a.demo-link:hover {
-          border: 1px solid #16a085;
-          padding: 0; }
+        body #container main ul.demo-links li a.demo-link {
+          display: inline;
+          padding: 1px; }
+          body #container main ul.demo-links li a.demo-link:hover {
+            border: 1px solid #16a085;
+            padding: 0; }
+        body #container main ul.demo-links li input {
+          width: 40%; }
+
+.cooltip.light {
+  background-color: #ecf0f1;
+  color: #333;
+  border: 1px solid #3498db; }
 
 /*# sourceMappingURL=demo.css.map */

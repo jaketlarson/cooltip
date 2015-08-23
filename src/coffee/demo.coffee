@@ -1,5 +1,5 @@
 $ ->
-  $("a#demo-direction-top-align-default").cooltip({direction: 'top', enabled: false, class: 'chicken wing'}).cooltip('enable').cooltip('removeClass', 'wing')
+  $("a#demo-direction-top-align-default").cooltip {direction: 'top'}
   $("a#demo-direction-top-align-right").cooltip {direction: 'top', align: 'right'}
   $("a#demo-direction-top-align-left").cooltip {direction: 'top', align: 'left'}
 
@@ -14,3 +14,6 @@ $ ->
   $("a#demo-direction-left-align-default").cooltip {direction: 'left'}
   $("a#demo-direction-left-align-top").cooltip {direction: 'left', align: 'top'}
   $("a#demo-direction-left-align-bottom").cooltip {direction: 'left', align: 'bottom'}
+
+  $('input#input-focus-demo').cooltip {trigger: 'focus', direction: 'right'}
+  $('a#custom-class-demo').cooltip {class: 'light', direction: 'bottom'}

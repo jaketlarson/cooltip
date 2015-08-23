@@ -1,28 +1,6 @@
 /**
  * Cooltip.js - Lightweight, jQuery tooltip plugin
- * v0.2.0
- * Docs: http://jaketlarson.github.io/cooltip/
- *
- * Copyright(c) 2015 Jake Larson <codereloadrepeat@gmail.com> <codereloadrepeat.com>
- * MIT Licensed. http://www.opensource.org/licenses/mit-license.php
- *
- * jQuery plugin boilerplate used in this script can be found at
- * https://github.com/jquery-boilerplate/jquery-boilerplate/tree/master/src
-*/
-/**
- * Cooltip.js - Lightweight, jQuery tooltip plugin
- * v0.3.5
- * Docs: http://jaketlarson.github.io/cooltip/
- *
- * Copyright(c) 2015 Jake Larson <codereloadrepeat@gmail.com> <codereloadrepeat.com>
- * MIT Licensed. http://www.opensource.org/licenses/mit-license.php
- *
- * jQuery plugin boilerplate used in this script can be found at
- * https://github.com/jquery-boilerplate/jquery-boilerplate/tree/master/src
-*/
-/**
- * Cooltip.js - Lightweight, jQuery tooltip plugin
- * v0.2.0
+ * v0.4.9
  * Docs: http://jaketlarson.github.io/cooltip/
  *
  * Copyright(c) 2015 Jake Larson <codereloadrepeat@gmail.com> <codereloadrepeat.com>
@@ -68,6 +46,7 @@
         this.$tip.addClass(this.options["class"]);
       }
       this._enabled = !!this.options.enabled;
+      this._matchArrowColor();
     },
     _positionTip: function() {
       var position;
@@ -155,7 +134,7 @@
       }
     },
     _bindTrigger: function() {
-      var bindAsHover;
+      var bindAsFocus, bindAsHover;
       bindAsHover = (function(_this) {
         return function() {
           _this.$target.hover(function(e) {
@@ -167,9 +146,22 @@
           });
         };
       })(this);
+      bindAsFocus = (function(_this) {
+        return function() {
+          _this.$target.focus(function(e) {
+            return _this.showTip();
+          });
+          _this.$target.blur(function(e) {
+            return _this.hideTip();
+          });
+        };
+      })(this);
       switch (this.options.trigger) {
         case 'hover':
           bindAsHover();
+          break;
+        case 'focus':
+          bindAsFocus();
           break;
         default:
           bindAsHover();
@@ -179,7 +171,6 @@
       return this.$tip.appendTo($('body'));
     },
     showTip: function() {
-      console.log(this._enabled);
       if (this._enabled) {
         this._appendTip();
         this._positionTip();
@@ -206,6 +197,19 @@
       if (data_title_exists && !title_already_exists) {
         this.$target.attr('title', this.$target.data('title'));
         this.$target.data('title', '');
+      }
+    },
+    _matchArrowColor: function() {
+      var tip_bg;
+      $('body').append(this.$tip);
+      if (parseInt(this.$tip.css('border-width')) > 0) {
+        tip_bg = this.$tip.css('border-color');
+      } else {
+        tip_bg = this.$tip.css('background-color');
+      }
+      this.$tip.remove();
+      if (tip_bg.length > 0) {
+        return this.$tip.css('border-color', tip_bg);
       }
     },
     addClass: function(class_name) {
