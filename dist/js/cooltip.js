@@ -9,17 +9,6 @@
  * jQuery plugin boilerplate used in this script can be found at
  * https://github.com/jquery-boilerplate/jquery-boilerplate/tree/master/src
 */
-/**
- * Cooltip.js - Lightweight, jQuery tooltip plugin
- * v0.4.9
- * Docs: http://jaketlarson.github.io/cooltip/
- *
- * Copyright(c) 2015 Jake Larson <codereloadrepeat@gmail.com> <codereloadrepeat.com>
- * MIT Licensed. http://www.opensource.org/licenses/mit-license.php
- *
- * jQuery plugin boilerplate used in this script can be found at
- * https://github.com/jquery-boilerplate/jquery-boilerplate/tree/master/src
-*/
 (function($, window, document) {
   var Cooltip, defaults, pluginName;
   pluginName = 'cooltip';

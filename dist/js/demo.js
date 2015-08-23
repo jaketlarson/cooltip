@@ -53,6 +53,6 @@ $(function() {
   });
   return $('a#error-class-demo').cooltip({
     "class": 'error',
-    direction: 'bottom'
+    direction: 'left'
   });
 });
