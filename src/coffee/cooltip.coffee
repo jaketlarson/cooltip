@@ -256,6 +256,11 @@
     enable: ->
       @_enabled = true
 
+    destroy: ->
+      # Possibly add event unbinding
+      @_disabled
+      @$tip.remove()
+
 
   $.fn[pluginName] = (options, arg) ->
     @each ->
@@ -280,6 +285,9 @@
 
             when 'enable'
               instance.enable()
+
+            when 'destroy'
+              instance.destroy()
 
 
 ) jQuery, window, document
