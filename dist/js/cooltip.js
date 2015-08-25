@@ -233,7 +233,8 @@
       return this.$tip.remove();
     },
     update: function() {
-      return this.$tip.html(this.$target.attr(this.options.attr));
+      this.$tip.html(this.$target.attr(this.options.attr));
+      return this._positionTip();
     }
   };
   return $.fn[pluginName] = function(options, arg) {

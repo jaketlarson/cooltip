@@ -263,6 +263,7 @@
 
     update: ->
       @$tip.html @$target.attr @options.attr
+      @_positionTip()
 
 
   $.fn[pluginName] = (options, arg) ->
