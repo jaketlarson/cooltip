@@ -64,7 +64,7 @@
 
     _initTip: ->
       @$tip = $("<div/>", {id: @uniq_id, class: 'cooltip'})
-      @$tip.html @$target.attr @options.attr
+      @update()
 
       # Add classes if they were passed as an option
       if @options.class.length > 0
@@ -261,6 +261,9 @@
       @_disabled
       @$tip.remove()
 
+    update: ->
+      @$tip.html @$target.attr @options.attr
+
 
   $.fn[pluginName] = (options, arg) ->
     @each ->
@@ -288,6 +291,9 @@
 
             when 'destroy'
               instance.destroy()
+
+            when 'update'
+              instance.update()
 
 
 ) jQuery, window, document

@@ -1,7 +1,7 @@
 {
   "name": "Cooltip.js", 
   "description": "Lightweight, jQuery tooltip plugin",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "homepage": "http://jaketlarson.github.io/cooltip/",
   "license": [" * Copyright(c) 2015 Jake Larson <codereloadrepeat@gmail.com> <codereloadrepeat.com>",
               " * MIT Licensed. http://www.opensource.org/licenses/mit-license.php",
