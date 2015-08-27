@@ -1,6 +1,6 @@
 /**
  * Cooltip.js - Lightweight, jQuery tooltip plugin
- * v0.5.1
+ * v0.5.2
  * Docs: http://jaketlarson.github.io/cooltip/
  *
  * Copyright(c) 2015 Jake Larson <codereloadrepeat@gmail.com> <codereloadrepeat.com>
@@ -35,6 +35,7 @@
       this._aligning_arrow_width = .8 * 16;
       this._initTip();
       this._bindTrigger();
+      this._addRemovalWatch();
     },
     _initTip: function() {
       this.$tip = $("<div/>", {
@@ -56,6 +57,13 @@
         left: position.left,
         top: position.top
       });
+    },
+    _addRemovalWatch: function() {
+      return this.$target.bind('destroyed', (function(_this) {
+        return function() {
+          return _this.destroy();
+        };
+      })(this));
     },
     _calcPositionLeft: function() {
       var left;
@@ -237,7 +245,7 @@
       return this._positionTip();
     }
   };
-  return $.fn[pluginName] = function(options, arg) {
+  $.fn[pluginName] = function(options, arg) {
     return this.each(function() {
       var instance;
       if (!$.data(this, 'plugin_' + pluginName)) {
@@ -262,5 +270,12 @@
         }
       }
     });
+  };
+  return $.event.special.destroyed = {
+    remove: function(o) {
+      if (o.handler) {
+        o.handler();
+      }
+    }
   };
 })(jQuery, window, document);

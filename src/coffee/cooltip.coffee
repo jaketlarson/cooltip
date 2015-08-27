@@ -60,6 +60,7 @@
 
       @_initTip()
       @_bindTrigger()
+      @_addRemovalWatch()
       return
 
     _initTip: ->
@@ -85,6 +86,10 @@
         top: position.top
       )
       return
+
+    _addRemovalWatch: ->
+      @$target.bind 'destroyed', () =>
+        @destroy()
 
     _calcPositionLeft: ->
       left = null
@@ -296,5 +301,11 @@
             when 'update'
               instance.update()
 
+  # special event 'destroyed' provided by mtkopone
+  # http://stackoverflow.com/a/10172676/3179806
+  $.event.special.destroyed = remove: (o) ->
+    if o.handler
+      o.handler()
+    return
 
 ) jQuery, window, document
