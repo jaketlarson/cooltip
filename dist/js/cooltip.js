@@ -1,6 +1,6 @@
 /**
  * Cooltip.js - Lightweight, jQuery tooltip plugin
- * v0.5.2
+ * v0.5.3
  * Docs: http://jaketlarson.github.io/cooltip/
  *
  * Copyright(c) 2015 Jake Larson <codereloadrepeat@gmail.com> <codereloadrepeat.com>
@@ -18,7 +18,8 @@
     align: 'middle',
     attr: 'title',
     "class": '',
-    enabled: true
+    enabled: true,
+    zIndex: 1
   };
   Cooltip = function(target, options) {
     this.target = target;
@@ -48,6 +49,7 @@
       }
       this._enabled = !!this.options.enabled;
       this._matchArrowColor();
+      this._setZIndex();
     },
     _positionTip: function() {
       var position;
@@ -217,8 +219,11 @@
       }
       this.$tip.remove();
       if (tip_bg.length > 0) {
-        return this.$tip.css('border-color', tip_bg);
+        this.$tip.css('border-color', tip_bg);
       }
+    },
+    _setZIndex: function() {
+      this.$tip.css('z-index', this.options.zIndex);
     },
     addClass: function(class_name) {
       if (!this.$tip.hasClass(class_name)) {

@@ -17,6 +17,7 @@
     attr: 'title'
     class: ''
     enabled: true
+    zIndex: 1
   }
 
   ## Options:
@@ -33,6 +34,7 @@
   #
   # enabled: whether or not to show tooltip on trigger event
   # options: true, false
+
 
 
 
@@ -75,6 +77,9 @@
 
       # Ensure arrow color is correct
       @_matchArrowColor()
+
+      # Set z-index
+      @_setZIndex()
 
       return
 
@@ -246,6 +251,12 @@
 
       if tip_bg.length > 0
         @$tip.css('border-color', tip_bg)
+
+      return
+
+    _setZIndex: ->
+      @$tip.css 'z-index', @options.zIndex
+      return
 
     addClass: (class_name) ->
       if !@$tip.hasClass class_name
