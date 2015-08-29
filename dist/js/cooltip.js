@@ -18,8 +18,7 @@
     align: 'middle',
     attr: 'title',
     "class": '',
-    enabled: true,
-    zIndex: 1
+    enabled: true
   };
   Cooltip = function(target, options) {
     this.target = target;
@@ -223,7 +222,9 @@
       }
     },
     _setZIndex: function() {
-      this.$tip.css('z-index', this.options.zIndex);
+      if (this.options.zIndex) {
+        this.$tip.css('z-index', this.options.zIndex);
+      }
     },
     addClass: function(class_name) {
       if (!this.$tip.hasClass(class_name)) {

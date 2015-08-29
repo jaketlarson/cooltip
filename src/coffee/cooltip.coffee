@@ -17,7 +17,6 @@
     attr: 'title'
     class: ''
     enabled: true
-    zIndex: 1
   }
 
   ## Options:
@@ -255,8 +254,9 @@
       return
 
     _setZIndex: ->
-      @$tip.css 'z-index', @options.zIndex
-      return
+      if @options.zIndex
+        @$tip.css 'z-index', @options.zIndex
+        return
 
     addClass: (class_name) ->
       if !@$tip.hasClass class_name
