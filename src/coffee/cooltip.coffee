@@ -34,9 +34,6 @@
   # enabled: whether or not to show tooltip on trigger event
   # options: true, false
 
-
-
-
   Cooltip = (target, options) ->
     @target = target
     @$target = $(target)
